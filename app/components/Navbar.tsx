@@ -3,18 +3,23 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X, Dumbbell } from "lucide-react";
+import siteConfig from "../config/site-config";
 
-const navLinks = [
+const baseLinks = [
   { label: "Home", href: "/#home" },
   { label: "About", href: "/#about" },
   { label: "Services", href: "/#services" },
   { label: "Testimonials", href: "/#testimonials" },
-  { label: "Quiz", href: "/quiz" },
-  { label: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const navLinks = [
+    ...baseLinks,
+    ...(siteConfig.quiz.enabled ? [{ label: "Quiz", href: "/quiz" }] : []),
+    { label: "Contact", href: "/#contact" },
+  ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-card-border">
@@ -22,7 +27,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2 text-accent font-bold text-xl">
             <Dumbbell className="w-6 h-6" />
-            COACH DEMO
+            {siteConfig.brand.name}
           </Link>
 
           {/* Desktop nav */}

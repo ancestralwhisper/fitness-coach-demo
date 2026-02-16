@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowLeft, RotateCcw } from "lucide-react";
 import Link from "next/link";
+import siteConfig from "../config/site-config";
 
 type PersonalityType = "power-lifter" | "cardio-warrior" | "zen-athlete" | "social-butterfly";
 
@@ -113,6 +114,8 @@ export default function QuizComponent() {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
 
+  const quizConfig = siteConfig.quiz;
+
   const handleSelect = (optionIndex: number) => {
     setSelectedOption(optionIndex);
   };
@@ -183,10 +186,10 @@ export default function QuizComponent() {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
-            href="/#contact"
+            href={quizConfig.resultCtaHref}
             className="bg-accent hover:bg-accent-hover text-background font-bold px-8 py-4 rounded-lg text-lg transition-colors"
           >
-            Book a Free Consult
+            {quizConfig.resultCtaText}
           </Link>
           <button
             onClick={restart}

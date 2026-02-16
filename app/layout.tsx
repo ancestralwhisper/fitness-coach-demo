@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import siteConfig from "./config/site-config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,9 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Coach Demo | Personal Training",
-  description:
-    "Transform your body and your life with personalized fitness coaching. 1-on-1 training, online coaching, and group sessions.",
+  title: `${siteConfig.brand.name} | ${siteConfig.brand.tagline}`,
+  description: siteConfig.brand.metaDescription,
 };
 
 export default function RootLayout({

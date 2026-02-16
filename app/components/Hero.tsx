@@ -3,8 +3,11 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import siteConfig from "../config/site-config";
 
 export default function Hero() {
+  const { hero } = siteConfig;
+
   return (
     <section
       id="home"
@@ -14,8 +17,7 @@ export default function Hero() {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80')",
+          backgroundImage: `url('${hero.backgroundImage}')`,
         }}
       />
       <div className="absolute inset-0 bg-black/70" />
@@ -27,8 +29,8 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
-          Transform Your Body.{" "}
-          <span className="text-accent">Transform Your Life.</span>
+          {hero.headline}{" "}
+          <span className="text-accent">{hero.headlineAccent}</span>
         </motion.h1>
 
         <motion.p
@@ -37,8 +39,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
-          Personalized training programs designed to help you crush your goals,
-          build confidence, and become the strongest version of yourself.
+          {hero.subheadline}
         </motion.p>
 
         <motion.div
@@ -48,16 +49,16 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.4 }}
         >
           <Link
-            href="/quiz"
+            href={hero.primaryCta.href}
             className="bg-accent hover:bg-accent-hover text-background font-bold px-8 py-4 rounded-lg text-lg transition-colors flex items-center gap-2"
           >
-            Take the Quiz <ArrowRight className="w-5 h-5" />
+            {hero.primaryCta.text} <ArrowRight className="w-5 h-5" />
           </Link>
           <Link
-            href="#contact"
+            href={hero.secondaryCta.href}
             className="border border-accent text-accent hover:bg-accent hover:text-background font-bold px-8 py-4 rounded-lg text-lg transition-colors"
           >
-            Book a Free Consult
+            {hero.secondaryCta.text}
           </Link>
         </motion.div>
       </div>
